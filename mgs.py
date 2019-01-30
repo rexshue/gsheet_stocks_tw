@@ -52,8 +52,7 @@ auth_json_path = 'auth.json'
 gss_scopes = ['https://spreadsheets.google.com/feeds']
 
 gss_client = auth_gss_client(auth_json_path, gss_scopes)
-s_key='1iQyTxY6WN80xYSTURKXmH-7twnkH9Vk75fn_cGs-x7c'
-#s_key=open('spreadsheet_key','r').read()
+s_key=open('spreadsheet_key','r').read()
 
 wks = gss_client.open_by_key(s_key)
 #print(get_sheet_value(wks.sheet1, 2, 1))
