@@ -35,7 +35,8 @@ def get_stock_price(no):
         soup = BeautifulSoup(content, 'lxml')
         trs = soup.find_all('tr', {'bgcolor':'#ffffff'})
         tds = trs[0].find_all('td')
-        result= float(tds[3].text)
+        if len(tds) > 3 :
+            result= float(tds[3].text)
     return result;
 #print(get_stock_dividend(2892))
 #time.sleep(1)
