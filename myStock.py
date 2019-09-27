@@ -64,11 +64,11 @@ def auth_gss_client(path, scopes):
     return gspread.authorize(credentials)
 
 def get_sheet_value(sheet, row, col):
-    time.sleep(1.1)
+    time.sleep(2.1)
     return sheet.cell(row,col).value
 
 def set_sheet_value(sheet, row, col, value):
-    time.sleep(1.1)
+    time.sleep(2.1)
     sheet.update_cell(row,col,value)
 
 def set_sheet_values(sheet, row, col, values):
@@ -85,7 +85,7 @@ def set_sheet_values(sheet, row, col, values):
     cell_list=sheet.range(label)
     for c,v in zip(cell_list, values):
         c.value = v
-    time.sleep(1.1)
+    time.sleep(2.1)
     sheet.update_cells(cell_list)
 
 def update_divident(sheet,no,rows):
@@ -115,12 +115,14 @@ def main():
         stockNo = get_sheet_value(wks.sheet1, lineIndex ,1)
         if stockNo != '':
             sys.stdout.write(str(stockNo))
-            set_sheet_value(wks.sheet1, lineIndex, 3, get_stock_price(stockNo))
-            divValue = get_sheet_value(wks.sheet1, lineIndex, 14)
-            if divValue != '':
-                update_divident(wks.sheet1,stockNo, lineIndex)
+            #set_sheet_value(wks.sheet1, lineIndex, 3, get_stock_price(stockNo))
+            #如果是空值，則更新數值
+            #divValue = get_sheet_value(wks.sheet1, lineIndex, 14)
+            #if divValue == '':
+            update_divident(wks.sheet1,stockNo, lineIndex)
             sys.stdout.write(',')
-            time.sleep(2)
+            #連發
+            time.sleep(3)
             lineIndex += 1
         else:
             print('Bye!\n')
